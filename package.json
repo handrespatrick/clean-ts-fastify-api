@@ -10,7 +10,7 @@
     "prisma": "npx prisma migrate dev --name first_migration && npx prisma generate",
     "start": "tsx watch src/main.ts",
     "test": "jest --coverage --forceExit --passWithNoTests",
-    "lint": "eslint src/** tests/** --fix"
+    "lint": "eslint src/** test/** --fix"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +38,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "^5.9.1",
     "bcrypt": "^5.1.1",
     "fastify": "^4.26.1",
