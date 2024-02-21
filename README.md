@@ -16,7 +16,6 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 
 | Comando             | Descrição                                    |
 | ------------------- | -------------------------------------------- |
-| build               | Gera a versão de produção do projeto         |
 | start               | Inicializa o projeto                         |
 | lint                | Aplica lint em todo o projeto                |
 | test                | Executa todos os testes do projeto           |
@@ -34,12 +33,6 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 - [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken)
 - [ESLint](https://eslint.org)
 - [Prettier](https://prettier.io)
-- [Lint Staged](https://github.com/okonet/lint-staged#readme)
-- [Husky](https://typicode.github.io/husky)
-- [Commitlint](https://commitlint.js.org)
-- [Comitizen](https://commitizen-tools.github.io/commitizen)
-- [Release It](https://github.com/release-it/release-it)
-- [Docsify](https://docsify.js.org)
 - [Swagger](https://swagger.io)
 - [Github Actions](https://docs.github.com/pt/actions)
 - [SonarQube](https://www.sonarqube.org)
