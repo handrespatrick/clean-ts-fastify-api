@@ -8,11 +8,11 @@ export interface IJwtEncrypter {
 
 type JwtPayload = {
   [key: string]: any;
-  iss?: string | undefined;
-  sub?: string | undefined;
-  aud?: string | string[] | undefined;
-  exp?: number | undefined;
-  nbf?: number | undefined;
-  iat?: number | undefined;
-  jti?: string | undefined;
+  iss?: string;
+  sub?: string;
+  aud?: string | string[];
+  exp?: number;
+  nbf?: number;
+  iat?: number;
+  jti?: string;
 };
