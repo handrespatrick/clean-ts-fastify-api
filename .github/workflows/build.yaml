@@ -4,26 +4,26 @@ on:
     branches:
       - main
       - develop
-      - "feature/**"
-      - "fix/**"
-      - "release/**"
+      - 'feature/**'
+      - 'fix/**'
+      - 'release/**'
     paths-ignore:
-      - "**/*.md"
-      - "**/*.yml"
-      - "**/*.yaml"
+      - '**/*.md'
+      - '**/*.yml'
+      - '**/*.yaml'
       - .github/**
   pull_request:
     branches:
       - main
     paths-ignore:
-      - "**/*.md"
-      - "**/*.yml"
-      - "**/*.yaml"
+      - '**/*.md'
+      - '**/*.yml'
+      - '**/*.yaml'
       - .github/**
   workflow_dispatch:
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  ci:
+    name: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -39,9 +39,9 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          organization: "handrespatrick"
-          projectKey: "handrespatrick_clean-ts-fastify-api"
-          projectBaseDir: "./"
+          organization: 'handrespatrick'
+          projectKey: 'handrespatrick_clean-ts-fastify-api'
+          projectBaseDir: './'
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
