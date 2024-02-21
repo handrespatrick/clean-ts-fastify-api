@@ -14,14 +14,11 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 
 ## 🎯 Comandos
 
-| Comando             | Descrição                                    |
-| ------------------- | -------------------------------------------- |
-| start               | Inicializa o projeto                         |
-| lint                | Aplica lint em todo o projeto                |
-| test                | Executa todos os testes do projeto           |
-| clean               | Remove a pasta node_modules,coverage e build |
-| release             | Gera uma nova versão do projeto              |
-| update-dependencies | Atualiza as dependências do projeto          |
+| Comando | Descrição                          |
+| ------- | ---------------------------------- |
+| start   | Inicializa o projeto               |
+| lint    | Aplica lint em todo o projeto      |
+| test    | Executa todos os testes do projeto |
 
 ## 🍂 Pilha de tecnologia
 
