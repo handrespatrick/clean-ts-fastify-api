@@ -1,6 +1,6 @@
-import { IAuthRegisterUseCase } from "../../../domain/usecases/auth";
-import { ok, serverError, conflict } from "../../helpers/http-helper";
-import { IController } from "../../protocols/controller-protocol";
+import { IAuthRegisterUseCase } from "@/domain/usecases/auth";
+import { ok, serverError, conflict } from "@/presentation/helpers/http-helper";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export class AuthRegisterController implements IController {
   constructor(private readonly authRegisterUsecase: IAuthRegisterUseCase) {}

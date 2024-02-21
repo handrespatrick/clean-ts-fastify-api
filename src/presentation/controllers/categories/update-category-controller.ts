@@ -1,6 +1,6 @@
-import { serverError, ok, notFound } from "../../helpers/http-helper";
-import { IController } from "../../protocols/controller-protocol";
-import { IUpdateCategoryUseCase } from "../../../domain/usecases/categories";
+import { IUpdateCategoryUseCase } from "@/domain/usecases/categories";
+import { serverError, ok, notFound } from "@/presentation/helpers/http-helper";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export class UpdateCategoryController implements IController {
   constructor(
@@ -17,7 +17,7 @@ export class UpdateCategoryController implements IController {
         id: parsedId,
         ...updateData,
       });
-      if (result.type === "error") {
+      if ("type" in result && result.type === "error") {
         return notFound(result);
       }
 

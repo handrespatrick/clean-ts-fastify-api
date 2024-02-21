@@ -1,5 +1,5 @@
-import { authRoutes, categoryRoutes } from "./main/routes";
-import env from "./main/config/env";
+import { authRoutes, categoryRoutes } from "@/main/routes";
+import env from "@/main/config/env";
 import fastify, { FastifyInstance } from "fastify";
 
 const app: FastifyInstance = fastify({ logger: true });

@@ -1,7 +1,7 @@
-import { IDeleteCategoryUseCase } from "../../../domain/usecases/categories/delete-category-usecase";
-import { IDeleteCategoryRepository } from "../../protocols/db/categories/delete-category-repository-protocol";
+import { IDeleteCategoryRepository } from "@/application/protocols/db/categories";
+import { IDeleteCategoryUseCase } from "@/domain/usecases/categories";
 
-export class DeleteCategoryUseCase implements IDeleteCategoryUseCase {
+export class DeleteCategoryService implements IDeleteCategoryUseCase {
   constructor(
     private readonly _categoryRepository: IDeleteCategoryRepository
   ) {}

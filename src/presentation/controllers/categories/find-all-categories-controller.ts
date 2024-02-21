@@ -1,6 +1,6 @@
-import { serverError, ok } from "../../helpers/http-helper";
-import { IController } from "../../protocols/controller-protocol";
-import { IFindAllCategoriesUseCase } from "../../../domain/usecases/categories";
+import { IFindAllCategoriesUseCase } from "@/domain/usecases/categories";
+import { serverError, ok, notFound } from "@/presentation/helpers/http-helper";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export class FindAllCategoriesController implements IController {
   constructor(

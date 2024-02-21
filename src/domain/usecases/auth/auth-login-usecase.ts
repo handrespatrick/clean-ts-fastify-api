@@ -1,4 +1,4 @@
-import { Auth } from "../../entities/auth";
+import { Auth } from "@/domain/entities";
 
 export interface IAuthLoginUseCase {
   authLogin(

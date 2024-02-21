@@ -1,6 +1,10 @@
-import { IAuthLoginUseCase } from "../../../domain/usecases/auth";
-import { ok, serverError, unauthorized } from "../../helpers/http-helper";
-import { IController } from "../../protocols/controller-protocol";
+import { IAuthLoginUseCase } from "@/domain/usecases/auth";
+import {
+  ok,
+  serverError,
+  unauthorized,
+} from "@/presentation/helpers/http-helper";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export class AuthLoginController implements IController {
   constructor(private readonly authLoginUsecase: IAuthLoginUseCase) {}

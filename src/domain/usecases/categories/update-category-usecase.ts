@@ -1,5 +1,4 @@
-import { Category } from "../../entities/category";
-import { DomainError } from "../../entities/error";
+import { Category, DomainError } from "@/domain/entities";
 
 export interface IUpdateCategoryUseCase {
   update(

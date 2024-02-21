@@ -1,7 +1,7 @@
-import { IUpdateCategoryUseCase } from "../../../domain/usecases/categories/update-category-usecase";
-import { IUpdateCategoryRepository } from "../../protocols/db/categories/update-category-repository-protocol";
+import { IUpdateCategoryRepository } from "@/application/protocols/db/categories";
+import { IUpdateCategoryUseCase } from "@/domain/usecases/categories";
 
-export class UpdateCategoryUseCase implements IUpdateCategoryUseCase {
+export class UpdateCategoryService implements IUpdateCategoryUseCase {
   constructor(
     private readonly _categoryRepository: IUpdateCategoryRepository
   ) {}

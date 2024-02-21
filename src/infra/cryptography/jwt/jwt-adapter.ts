@@ -1,7 +1,7 @@
 import {
   IJwtDecrypter,
   IJwtEncrypter,
-} from "../../../application/protocols/cryptography/jwt/jwt-protocol";
+} from "@/application/protocols/cryptography/jwt/jwt-protocol";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export class JwtAdapter implements IJwtEncrypter, IJwtDecrypter {

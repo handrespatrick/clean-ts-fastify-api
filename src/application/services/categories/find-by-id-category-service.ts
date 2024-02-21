@@ -1,7 +1,7 @@
-import { IFindByIdCategoryUseCase } from "../../../domain/usecases/categories/find-by-id-category-usecase";
-import { IFindByIdCategoryRepository } from "../../protocols/db/categories/find-by-id-category-repository-protocol";
+import { IFindByIdCategoryRepository } from "@/application/protocols/db/categories";
+import { IFindByIdCategoryUseCase } from "@/domain/usecases/categories";
 
-export class FindByIdCategoryUseCase implements IFindByIdCategoryUseCase {
+export class FindByIdCategoryService implements IFindByIdCategoryUseCase {
   constructor(
     private readonly _findByIdCategoryRepository: IFindByIdCategoryRepository
   ) {}

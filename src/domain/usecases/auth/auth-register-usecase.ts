@@ -1,4 +1,4 @@
-import { Auth } from "../../entities/auth";
+import { Auth } from "@/domain/entities";
 
 export interface IAuthRegisterUseCase {
   authRegister(params: IAuthRegisterUseCase.Params): Promise<string | null>;

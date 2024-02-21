@@ -1,7 +1,7 @@
-import { IAuthLoginUseCase } from "../../../domain/usecases/auth/auth-login-usecase";
-import { IBcryptHashComparer } from "../../protocols/cryptography/bcrypt/bcrypt-protocol";
-import { IJwtEncrypter } from "../../protocols/cryptography/jwt/jwt-protocol";
-import { IAuthLoginRepository } from "../../protocols/db/auth/auth-login-repository-protocol";
+import { IBcryptHashComparer } from "@/application/protocols/cryptography/bcrypt/bcrypt-protocol";
+import { IJwtEncrypter } from "@/application/protocols/cryptography/jwt/jwt-protocol";
+import { IAuthLoginRepository } from "@/application/protocols/db/auth";
+import { IAuthLoginUseCase } from "@/domain/usecases/auth";
 
 export class AuthLoginService implements IAuthLoginUseCase {
   constructor(

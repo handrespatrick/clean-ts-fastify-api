@@ -1,12 +1,13 @@
+import { JwtAdapter } from "@/infra/cryptography/jwt/jwt-adapter";
 import {
   makeCreateCategoryController,
   makeDeleteCategoryController,
   makeFindAllCategoriesController,
   makeFindByIdCategoryController,
   makeUpdateCategoryController,
-} from "../factories/categories";
-import { JwtAdapter } from "../../infra/cryptography/jwt/jwt-adapter";
-import env from "./../config/env";
+} from "@/main/factories/categories";
+
+import env from "@/main/config/env";
 import { FastifyInstance } from "fastify";
 
 export const categoryRoutes = async (

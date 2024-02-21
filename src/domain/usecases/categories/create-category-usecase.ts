@@ -1,4 +1,4 @@
-import { Category } from "../../entities/category";
+import { Category } from "@/domain/entities";
 
 export interface ICreateCategoryUseCase {
   create(

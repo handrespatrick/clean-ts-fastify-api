@@ -1,6 +1,6 @@
-import { IAuthRegisterUseCase } from "../../../domain/usecases/auth/auth-register-usecase";
-import { IBcryptHasher } from "../../protocols/cryptography/bcrypt/bcrypt-protocol";
-import { IAuthRegisterRepository } from "../../protocols/db/auth/auth-register-repository-protocol";
+import { IBcryptHasher } from "@/application/protocols/cryptography/bcrypt/bcrypt-protocol";
+import { IAuthRegisterRepository } from "@/application/protocols/db/auth";
+import { IAuthRegisterUseCase } from "@/domain/usecases/auth";
 
 export class AuthRegisterService implements IAuthRegisterUseCase {
   constructor(

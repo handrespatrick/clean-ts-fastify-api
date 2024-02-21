@@ -1,6 +1,6 @@
-import { serverError, ok, notFound } from "../../helpers/http-helper";
-import { IController } from "../../protocols/controller-protocol";
-import { IFindByIdCategoryUseCase } from "../../../domain/usecases/categories";
+import { IFindByIdCategoryUseCase } from "@/domain/usecases/categories";
+import { serverError, ok, notFound } from "@/presentation/helpers/http-helper";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export class FindByIdCategoryController implements IController {
   constructor(
@@ -13,7 +13,7 @@ export class FindByIdCategoryController implements IController {
 
       const parsedId = parseInt(id);
       const result = await this._findbyIdCategoryUseCase.findById(parsedId);
-      if (result.type === "error") {
+      if ("type" in result && result.type === "error") {
         return notFound(result);
       }
 

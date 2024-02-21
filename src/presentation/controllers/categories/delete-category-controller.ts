@@ -1,6 +1,6 @@
-import { serverError, ok, notFound } from "../../helpers/http-helper";
-import { IController } from "../../protocols/controller-protocol";
-import { IDeleteCategoryUseCase } from "../../../domain/usecases/categories";
+import { IDeleteCategoryUseCase } from "@/domain/usecases/categories";
+import { serverError, ok, notFound } from "@/presentation/helpers/http-helper";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export class DeleteCategoryController implements IController {
   constructor(
@@ -12,8 +12,9 @@ export class DeleteCategoryController implements IController {
       const { id } = request.params;
 
       const parsedId = parseInt(id);
-      const result = await this._deleteCategoryUseCase.delete(parsedId);
-      if (result.type === "error") {
+      const result: IDeleteCategoryUseCase.Result =
+        await this._deleteCategoryUseCase.delete(parsedId);
+      if ("type" in result && result.type === "error") {
         return notFound(result);
       }
 

@@ -1,7 +1,7 @@
 import {
   makeAuthLoginController,
   makeAuthRegisterController,
-} from "../factories/auth";
+} from "@/main/factories/auth";
 import { FastifyInstance } from "fastify";
 
 export const authRoutes = async (fastify: FastifyInstance): Promise<void> => {

@@ -1,7 +1,7 @@
-import { ICreateCategoryUseCase } from "../../../domain/usecases/categories/create-category-usecase";
-import { ICreateCategoryRepository } from "../../protocols/db/categories/create-category-repository-protocol";
+import { ICreateCategoryRepository } from "@/application/protocols/db/categories";
+import { ICreateCategoryUseCase } from "@/domain/usecases/categories";
 
-export class CreateCategoryUseCase implements ICreateCategoryUseCase {
+export class CreateCategoryService implements ICreateCategoryUseCase {
   constructor(
     private readonly _categoryRepository: ICreateCategoryRepository
   ) {}

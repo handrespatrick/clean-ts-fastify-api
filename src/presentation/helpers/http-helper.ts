@@ -1,4 +1,4 @@
-import { IController } from "../protocols/controller-protocol";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export const badRequest = (error: Error): IController.Result => ({
   statusCode: 400,

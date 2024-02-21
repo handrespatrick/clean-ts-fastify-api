@@ -1,6 +1,6 @@
-import { serverError, ok } from "../../helpers/http-helper";
-import { IController } from "../../protocols/controller-protocol";
-import { ICreateCategoryUseCase } from "../../../domain/usecases/categories";
+import { ICreateCategoryUseCase } from "@/domain/usecases/categories";
+import { serverError, ok } from "@/presentation/helpers/http-helper";
+import { IController } from "@/presentation/protocols/controller-protocol";
 
 export class CreateCategoryController implements IController {
   constructor(

@@ -1,7 +1,7 @@
 import {
   IBcryptHashComparer,
   IBcryptHasher,
-} from "../../../application/protocols/cryptography/bcrypt/bcrypt-protocol";
+} from "@/application/protocols/cryptography/bcrypt/bcrypt-protocol";
 import bcrypt from "bcrypt";
 
 export class BcryptAdapter implements IBcryptHasher, IBcryptHashComparer {
