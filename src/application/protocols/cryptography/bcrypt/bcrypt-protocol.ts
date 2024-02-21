@@ -1,7 +1,7 @@
 export interface IBcryptHasher {
-  hash(plaintext: string): Promise<string>;
+  hash(plaintext: string): Promise<string>
 }
 
 export interface IBcryptHashComparer {
-  compare(plaitext: string, digest: string): Promise<boolean>;
+  compare(plaitext: string, digest: string): Promise<boolean>
 }

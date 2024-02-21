@@ -1,4 +1,4 @@
 export type DomainError = {
-  type: string;
-  message: string;
-};
+  type: string
+  message: string
+}

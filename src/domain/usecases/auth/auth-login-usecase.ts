@@ -1,19 +1,17 @@
-import { Auth } from "@/domain/entities";
+import { Auth } from '@/domain/entities'
 
 export interface IAuthLoginUseCase {
-  authLogin(
-    params: IAuthLoginUseCase.Params
-  ): Promise<IAuthLoginUseCase.Result>;
+  authLogin(params: IAuthLoginUseCase.Params): Promise<IAuthLoginUseCase.Result>
 }
 
 export namespace IAuthLoginUseCase {
-  export type Params = Auth;
+  export type Params = Auth
 
   export type Result = Partial<{
-    accessToken: string;
-    email: string;
-    name: string;
-    type: "error" | "success";
-    message: string;
-  }>;
+    accessToken: string
+    email: string
+    name: string
+    type: 'error' | 'success'
+    message: string
+  }>
 }

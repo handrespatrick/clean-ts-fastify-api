@@ -1,2 +1,2 @@
-export * from "./auth-login-usecase";
-export * from "./auth-register-usecase";
+export * from './auth-login-usecase'
+export * from './auth-register-usecase'
