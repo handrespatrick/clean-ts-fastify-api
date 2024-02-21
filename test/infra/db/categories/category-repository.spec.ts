@@ -1,8 +1,6 @@
 import { CategoryRepository } from '@/infra/db/categories/category-repository'
 import { prismaClient } from '@/infra/db/prisma-client'
 
-// jest.mock("../prisma-client");
-
 describe('CategoryRepository', () => {
   let categoryRepository: CategoryRepository
 

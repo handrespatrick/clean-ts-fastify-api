@@ -1,9 +1,9 @@
-import { Category, DomainError } from "@/domain/entities";
+import { Category, DomainError } from '@/domain/entities'
 
 export interface IFindByIdCategoryUseCase {
-  findById(id: number): Promise<IFindByIdCategoryUseCase.Result>;
+  findById(id: number): Promise<IFindByIdCategoryUseCase.Result>
 }
 
 export namespace IFindByIdCategoryUseCase {
-  export type Result = Category | DomainError;
+  export type Result = Category | DomainError
 }

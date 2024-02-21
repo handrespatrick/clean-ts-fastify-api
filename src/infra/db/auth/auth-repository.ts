@@ -1,4 +1,5 @@
 import { IAuthLoginRepository, IAuthRegisterRepository } from '@/application/protocols/db/auth'
+
 import { prismaClient } from '../prisma-client'
 
 export class AuthRepository implements IAuthLoginRepository, IAuthRegisterRepository {

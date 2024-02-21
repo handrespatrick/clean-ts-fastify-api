@@ -1,7 +1,7 @@
 import { JwtAdapter } from '@/infra/cryptography/jwt/jwt-adapter'
 import { categoryRoutes } from '@/main/routes'
-import { FastifyInstance } from 'fastify'
 import { IController } from '@/presentation/protocols/controller-protocol'
+import { FastifyInstance } from 'fastify'
 
 jest.mock('@/infra/cryptography/jwt/jwt-adapter', () => ({
   JwtAdapter: jest.fn().mockImplementation(() => ({

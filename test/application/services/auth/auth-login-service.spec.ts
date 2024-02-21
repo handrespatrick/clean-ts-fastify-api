@@ -1,6 +1,6 @@
-import { IAuthLoginRepository } from '@/application/protocols/db/auth'
 import { IBcryptHashComparer } from '@/application/protocols/cryptography/bcrypt/bcrypt-protocol'
 import { IJwtEncrypter } from '@/application/protocols/cryptography/jwt/jwt-protocol'
+import { IAuthLoginRepository } from '@/application/protocols/db/auth'
 import { AuthLoginService } from '@/application/services/auth'
 
 describe('AuthLoginService', () => {

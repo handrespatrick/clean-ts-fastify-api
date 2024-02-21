@@ -5,6 +5,7 @@ import {
   IFindByIdCategoryRepository,
   IUpdateCategoryRepository
 } from '@/application/protocols/db/categories'
+
 import { prismaClient } from '../prisma-client'
 
 export class CategoryRepository

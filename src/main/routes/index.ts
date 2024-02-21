@@ -1,2 +1,2 @@
-export * from "./auth-routes";
-export * from "./category-routes";
+export * from './auth-routes'
+export * from './category-routes'

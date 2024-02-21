@@ -1,5 +1,5 @@
-import { IAuthRegisterRepository } from '@/application/protocols/db/auth'
 import { IBcryptHasher } from '@/application/protocols/cryptography/bcrypt/bcrypt-protocol'
+import { IAuthRegisterRepository } from '@/application/protocols/db/auth'
 import { AuthRegisterService } from '@/application/services/auth'
 
 describe('AuthRegisterService', () => {

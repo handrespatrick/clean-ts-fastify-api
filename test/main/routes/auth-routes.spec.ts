@@ -25,7 +25,7 @@ describe('authRoutes', () => {
 
     expect(fastifyMock.post).toHaveBeenCalledWith('/login', expect.any(Function))
 
-    const [routePath, routeHandler] = fastifyMock.post.mock.calls[0]
+    const [routeHandler] = fastifyMock.post.mock.calls[0]
     const mockReq = {}
     const mockReply = { code: jest.fn().mockReturnThis(), send: jest.fn() }
     await routeHandler(mockReq, mockReply)
@@ -48,7 +48,7 @@ describe('authRoutes', () => {
 
     expect(fastifyMock.post).toHaveBeenCalledWith('/register', expect.any(Function))
 
-    const [routePath, routeHandler] = fastifyMock.post.mock.calls[1]
+    const [routeHandler] = fastifyMock.post.mock.calls[1]
     const mockReq = {}
     const mockReply = { code: jest.fn().mockReturnThis(), send: jest.fn() }
     await routeHandler(mockReq, mockReply)
