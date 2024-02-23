@@ -1,4 +1,10 @@
 import { JwtAdapter } from '@/infra/cryptography/jwt/jwt-adapter'
+import {
+  createCategorySchema,
+  deleteCategorySchema,
+  findByIdCategorySchema,
+  updateCategorySchema
+} from '@/infra/schemas/categories'
 import env from '@/main/config/env'
 import {
   makeCreateCategoryController,
@@ -26,16 +32,22 @@ export const categoryRoutes = async (fastify: FastifyInstance): Promise<void> =>
     }
   })
 
-  fastify.post('/', async (req, reply) => {
-    const controller = makeCreateCategoryController()
-    const result = await controller.handle(req)
-    reply.code(result.statusCode).send(result)
+  fastify.post('/', {
+    schema: createCategorySchema,
+    handler: async (req, reply) => {
+      const controller = makeCreateCategoryController()
+      const result = await controller.handle(req)
+      reply.code(result.statusCode).send(result)
+    }
   })
 
-  fastify.delete('/:id', async (req, reply) => {
-    const controller = makeDeleteCategoryController()
-    const result = await controller.handle(req)
-    reply.code(result.statusCode).send(result)
+  fastify.delete('/:id', {
+    schema: deleteCategorySchema,
+    handler: async (req, reply) => {
+      const controller = makeDeleteCategoryController()
+      const result = await controller.handle(req)
+      reply.code(result.statusCode).send(result)
+    }
   })
 
   fastify.get('/', async (req, reply) => {
@@ -44,15 +56,21 @@ export const categoryRoutes = async (fastify: FastifyInstance): Promise<void> =>
     reply.code(result.statusCode).send(result)
   })
 
-  fastify.get('/:id', async (req, reply) => {
-    const controller = makeFindByIdCategoryController()
-    const result = await controller.handle(req)
-    reply.code(result.statusCode).send(result)
+  fastify.get('/:id', {
+    schema: findByIdCategorySchema,
+    handler: async (req, reply) => {
+      const controller = makeFindByIdCategoryController()
+      const result = await controller.handle(req)
+      reply.code(result.statusCode).send(result)
+    }
   })
 
-  fastify.put('/:id', async (req, reply) => {
-    const controller = makeUpdateCategoryController()
-    const result = await controller.handle(req)
-    reply.code(result.statusCode).send(result)
+  fastify.put('/:id', {
+    schema: updateCategorySchema,
+    handler: async (req, reply) => {
+      const controller = makeUpdateCategoryController()
+      const result = await controller.handle(req)
+      reply.code(result.statusCode).send(result)
+    }
   })
 }
