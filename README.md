@@ -30,6 +30,8 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 - [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken)
 - [ESLint](https://eslint.org)
 - [Prettier](https://prettier.io)
+- [Lint Staged](https://github.com/okonet/lint-staged#readme)
+- [Husky](https://typicode.github.io/husky)
 - [Git Commit Msg Lint](https://www.npmjs.com/package/git-commit-msg-linter)
 - [Swagger](https://swagger.io)
 - [Github Actions](https://docs.github.com/pt/actions)
