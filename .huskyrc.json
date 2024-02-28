@@ -1,0 +1,5 @@
+{
+  "hoooks": {
+    "pre-commit": "lint-staged"
+  }
+}
