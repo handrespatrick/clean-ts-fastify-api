@@ -2,8 +2,8 @@ import { authLoginSchema, authRegisterSchema } from '@/infra/schemas/auth'
 import { makeAuthLoginController, makeAuthRegisterController } from '@/main/factories/auth'
 import { FastifyInstance } from 'fastify'
 
-export const authRoutes = async (fastify: FastifyInstance): Promise<void> => {
-  fastify.post('/login', {
+export const authRoutes = async (app: FastifyInstance): Promise<void> => {
+  app.post('/login', {
     schema: authLoginSchema,
     handler: async (req, reply) => {
       const controller = makeAuthLoginController()
@@ -12,7 +12,7 @@ export const authRoutes = async (fastify: FastifyInstance): Promise<void> => {
     }
   })
 
-  fastify.post('/register', {
+  app.post('/register', {
     schema: authRegisterSchema,
     handler: async (req, reply) => {
       const controller = makeAuthRegisterController()

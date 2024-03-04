@@ -15,8 +15,8 @@ import {
 } from '@/main/factories/categories'
 import { FastifyInstance } from 'fastify'
 
-export const categoryRoutes = async (fastify: FastifyInstance): Promise<void> => {
-  fastify.addHook('preHandler', async (req, reply) => {
+export const categoryRoutes = async (app: FastifyInstance): Promise<void> => {
+  app.addHook('preHandler', async (req, reply) => {
     const authorizationHeader = req.headers.authorization
 
     if (!authorizationHeader) {
@@ -32,7 +32,7 @@ export const categoryRoutes = async (fastify: FastifyInstance): Promise<void> =>
     }
   })
 
-  fastify.post('/', {
+  app.post('/', {
     schema: createCategorySchema,
     handler: async (req, reply) => {
       const controller = makeCreateCategoryController()
@@ -41,7 +41,7 @@ export const categoryRoutes = async (fastify: FastifyInstance): Promise<void> =>
     }
   })
 
-  fastify.delete('/:id', {
+  app.delete('/:id', {
     schema: deleteCategorySchema,
     handler: async (req, reply) => {
       const controller = makeDeleteCategoryController()
@@ -50,13 +50,13 @@ export const categoryRoutes = async (fastify: FastifyInstance): Promise<void> =>
     }
   })
 
-  fastify.get('/', async (req, reply) => {
+  app.get('/', async (req, reply) => {
     const controller = makeFindAllCategoriesController()
     const result = await controller.handle(req)
     reply.code(result.statusCode).send(result)
   })
 
-  fastify.get('/:id', {
+  app.get('/:id', {
     schema: findByIdCategorySchema,
     handler: async (req, reply) => {
       const controller = makeFindByIdCategoryController()
@@ -65,7 +65,7 @@ export const categoryRoutes = async (fastify: FastifyInstance): Promise<void> =>
     }
   })
 
-  fastify.put('/:id', {
+  app.put('/:id', {
     schema: updateCategorySchema,
     handler: async (req, reply) => {
       const controller = makeUpdateCategoryController()
