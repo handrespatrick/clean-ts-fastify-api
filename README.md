@@ -6,12 +6,6 @@
 
 Aplicação CRUD responsável por gerenciar a autenticação de usuários e o controle de acesso, além de permitir a gestão das tabelas.
 
-## 🔗 URLs
-
-| Environment | URL                      |
-| ----------- | ------------------------ |
-| LOCAL       | <http://localhost:3000/> |
-
 ## 🎯 Comandos
 
 | Comando             | Descrição                                    |
@@ -41,9 +35,11 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 - [Github Actions](https://docs.github.com/pt/actions)
 - [SonarQube](https://www.sonarqube.org)
 
+## Sobre o projeto:
+
 ### 📁 Estrutura
 
-- [`application`](./src/application) - Orquestra o fluxo de dados entre o domínio e as interfaces, contendo a lógica de aplicação e casos de uso.
+- [`data`](./src/data) - Orquestra o fluxo de dados entre o domínio e as interfaces, contendo a lógica de aplicação e casos de uso.
 - [`domain`](./src/domain) - O núcleo do sistema, com regras e lógicas de negócio, entidades, e interfaces de repositórios.
 - [`infra`](./src/infra) - Implementa detalhes técnicos como bancos de dados e comunicação com serviços externos.
 - [`main`](./src/main) - Ponto de entrada da aplicação, responsável pela inicialização e configuração.
@@ -56,11 +52,39 @@ O projeto segue a arquitetura:
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design)
 
+### 🧩 Padrões
+
+O projeto utiliza diversos padrões de design, incluindo:
+
+- [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection)
+- [Factory](https://en.wikipedia.org/wiki/Factory_method_pattern)
+- [Adapter](https://en.wikipedia.org/wiki/Adapter_pattern)
+- [Decorator](https://en.wikipedia.org/wiki/Decorator_pattern)
+- [Proxy](https://en.wikipedia.org/wiki/Proxy_pattern)
+- [Composite](https://en.wikipedia.org/wiki/Composite_pattern)
+
+### 📚 Documentações
+
+O projeto é documentado usando:
+
+- [Swagger](https://swagger.io/docs/specification/about/)
+- [Docsify](https://docsify.js.org/)
+- [C4 Model](https://c4model.com/)
+
+### 💡 Princípios
+
+O projeto segue os seguintes princípios de desenvolvimento de software:
+
+- [S.O.L.I.D](https://en.wikipedia.org/wiki/SOLID)
+- [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+- [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
+- [KISS](https://en.wikipedia.org/wiki/KISS_principle)
+
 ## 🏃 Rodando o projeto
 
 - Instale as dependências do projeto executando o comando `npm install`
 
-- Para Inicializar o projeto execute o comando `npm run start`
+- Para Inicializar o projeto execute o comando `npm run start:dev`
 
 - Para executar os testes, execute o comando `npm run test`
 
