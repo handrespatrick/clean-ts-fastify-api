@@ -14,11 +14,15 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 
 ## 🎯 Comandos
 
-| Comando | Descrição                          |
-| ------- | ---------------------------------- |
-| start   | Inicializa o projeto               |
-| lint    | Aplica lint em todo o projeto      |
-| test    | Executa todos os testes do projeto |
+| Comando             | Descrição                                    |
+| ------------------- | -------------------------------------------- |
+| build               | Gera a versão de produção do projeto         |
+| start               | Inicializa o projeto                         |
+| start:dev           | Inicializa o projeto em modo desenvolvimento |
+| lint                | Aplica lint em todo o projeto                |
+| format              | Aplica prettier em todo o projeto            |
+| test                | Executa todos os testes do projeto           |
+| update-dependencies | Atualiza as dependências do projeto          |
 
 ## 🍂 Pilha de tecnologia
 
