@@ -7,10 +7,12 @@
     "node": "18.12.1"
   },
   "scripts": {
+    "start": "node -r ./tsconfig-paths-dist.js ./dist/main.js",
+    "start:dev": "tsx watch src/main.ts",
+    "build": "rimraf build && tsc -p tsconfig-build.json",
     "prisma": "npx prisma migrate dev --name first_migration && npx prisma generate",
-    "start": "tsx watch src/main.ts",
     "test": "jest --coverage --forceExit --passWithNoTests",
-    "lint": "eslint src/** test/** --fix"
+    "lint": "eslint src/** tests/** --fix"
   },
   "keywords": [],
   "author": "",

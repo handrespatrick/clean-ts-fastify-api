@@ -3,9 +3,9 @@ module.exports = {
   bail: true,
   testEnvironment: 'jest-environment-node',
   verbose: true,
-  setupFiles: ['./test/setup.js'],
-  testPathIgnorePatterns: ['/node_modules/', '/.scafflater/init/test'],
-  modulePathIgnorePatterns: ['<rootDir>/.build/'],
+  setupFiles: ['./tests/setup.js'],
+  testPathIgnorePatterns: ['/node_modules/'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
@@ -19,5 +19,5 @@ module.exports = {
   },
   maxWorkers: 2,
   cacheDirectory: '/tmp/jest',
-  watchPathIgnorePatterns: ['/node_modules/', '/.scafflater/init/test', '/.build']
+  watchPathIgnorePatterns: ['/node_modules/', '/dist']
 }

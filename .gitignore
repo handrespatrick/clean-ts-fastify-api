@@ -159,27 +159,17 @@ web_modules/
 .next
 out
 
-# Nuxt.js build / generate output
-.nuxt
-dist
-
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
-# vuepress build output
-.vuepress/dist
-
 # vuepress v2.x temp and cache directory
 .temp
 
 # Docusaurus cache and generated files
 .docusaurus
-
-# Serverless directories
-.serverless/
 
 # FuseBox cache
 .fusebox/
@@ -199,12 +189,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-### Node Patch ###
-# Serverless Webpack directories
-.webpack/
-
-# Optional stylelint cache
 
 # SvelteKit build / generate output
 .svelte-kit
@@ -236,4 +220,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/git,node,linux,macos,windows
-.build/
+dist/
