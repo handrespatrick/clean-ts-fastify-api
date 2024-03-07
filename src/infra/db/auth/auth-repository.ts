@@ -1,6 +1,5 @@
 import { IAuthLoginRepository, IAuthRegisterRepository } from '@/application/protocols/db/auth'
-
-import { prismaClient } from '../prisma-client'
+import { prismaClient } from '@/infra/db/client/prisma-client'
 
 export class AuthRepository implements IAuthLoginRepository, IAuthRegisterRepository {
   async findUserByEmail(email: string): Promise<IAuthLoginRepository.Result> {

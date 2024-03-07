@@ -1,5 +1,5 @@
 import { CategoryRepository } from '@/infra/db/categories/category-repository'
-import { prismaClient } from '@/infra/db/prisma-client'
+import { prismaClient } from '@/infra/db/client/prisma-client'
 
 describe('CategoryRepository', () => {
   let categoryRepository: CategoryRepository

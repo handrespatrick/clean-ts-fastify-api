@@ -1,4 +1,4 @@
-import { prismaClient } from '@/infra/db/prisma-client'
+import { prismaClient } from '@/infra/db/client/prisma-client'
 import { PrismaClient } from '@prisma/client'
 
 describe('prismaClient', () => {

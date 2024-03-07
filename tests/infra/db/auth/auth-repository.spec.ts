@@ -1,5 +1,5 @@
 import { AuthRepository } from '@/infra/db/auth/auth-repository'
-import { prismaClient } from '@/infra/db/prisma-client'
+import { prismaClient } from '@/infra/db/client/prisma-client'
 
 describe('AuthRepository', () => {
   let authRepository: AuthRepository
