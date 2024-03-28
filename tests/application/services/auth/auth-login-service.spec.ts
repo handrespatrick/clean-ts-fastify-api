@@ -4,7 +4,7 @@ import { IAuthLoginRepository } from '@/application/protocols/db/auth'
 import { AuthLoginService } from '@/application/services/auth'
 
 describe('AuthLoginService', () => {
-  let authLoginService: AuthLoginService
+  let service: AuthLoginService
   let authLoginRepositoryMock: IAuthLoginRepository
   let hashComparerMock: IBcryptHashComparer
   let jwtEncrypterMock: IJwtEncrypter
@@ -22,17 +22,30 @@ describe('AuthLoginService', () => {
       encrypt: jest.fn()
     }
 
-    authLoginService = new AuthLoginService(authLoginRepositoryMock, hashComparerMock, jwtEncrypterMock)
+    service = new AuthLoginService(authLoginRepositoryMock, hashComparerMock, jwtEncrypterMock)
   })
 
   describe('authLogin', () => {
+    const inputData = {
+      email: 'existing@example.com',
+      password: 'correctPassword'
+    }
+
+    const userAccount = {
+      cliente_id: 123,
+      email: 'any_mail@mail.com',
+      username: 'any_username',
+      senha: 'any_password',
+      nome: 'any_name',
+      cpf: 'any_cpf',
+      telefone: 'any_phone',
+      data_nascimento: null
+    }
+
     it('should return error if email is not found', async () => {
       jest.spyOn(authLoginRepositoryMock, 'findUserByEmail').mockResolvedValue(null)
 
-      const result = await authLoginService.authLogin({
-        email: 'nonexistent@example.com',
-        password: 'password'
-      })
+      const result = await service.authLogin(inputData)
 
       expect(result).toEqual({
         type: 'error',
@@ -55,10 +68,7 @@ describe('AuthLoginService', () => {
       jest.spyOn(authLoginRepositoryMock, 'findUserByEmail').mockResolvedValueOnce(userAccount)
       jest.spyOn(hashComparerMock, 'compare').mockResolvedValueOnce(false)
 
-      const result = await authLoginService.authLogin({
-        email: 'existing@example.com',
-        password: 'incorrectPassword'
-      })
+      const result = await service.authLogin(inputData)
 
       expect(result).toEqual({
         type: 'error',
@@ -67,31 +77,44 @@ describe('AuthLoginService', () => {
     })
 
     it('should return success with access token if authentication is successful', async () => {
-      const userAccount = {
-        cliente_id: 123,
-        email: 'any_mail@mail.com',
-        username: 'any_username',
-        senha: 'any_password',
-        nome: 'any_name',
-        cpf: 'any_cpf',
-        telefone: 'any_phone',
-        data_nascimento: null
-      }
-
       jest.spyOn(authLoginRepositoryMock, 'findUserByEmail').mockResolvedValueOnce(userAccount)
       jest.spyOn(hashComparerMock, 'compare').mockResolvedValueOnce(true)
       jest.spyOn(jwtEncrypterMock, 'encrypt').mockResolvedValueOnce('accessToken')
 
-      const result = await authLoginService.authLogin({
-        email: 'existing@example.com',
-        password: 'correctPassword'
-      })
+      const result = await service.authLogin(inputData)
 
       expect(result).toEqual({
         type: 'success',
         accessToken: 'accessToken',
         message: 'User logged in successfully'
       })
+    })
+
+    it('should throw if AuthLoginRepository.findUserByEmail throws', async () => {
+      jest.spyOn(authLoginRepositoryMock, 'findUserByEmail').mockRejectedValueOnce(new Error())
+
+      const promise = service.authLogin(inputData)
+
+      expect(promise).rejects.toThrow(new Error())
+    })
+
+    it('should throw if BcryptHashComparer.compare throws', async () => {
+      jest.spyOn(authLoginRepositoryMock, 'findUserByEmail').mockResolvedValueOnce(userAccount)
+      jest.spyOn(hashComparerMock, 'compare').mockRejectedValueOnce(new Error())
+
+      const promise = service.authLogin(inputData)
+
+      expect(promise).rejects.toThrow(new Error())
+    })
+
+    it('should throw if JwtEncrypter.encrypt throws', async () => {
+      jest.spyOn(authLoginRepositoryMock, 'findUserByEmail').mockResolvedValueOnce(userAccount)
+      jest.spyOn(hashComparerMock, 'compare').mockResolvedValueOnce(true)
+      jest.spyOn(jwtEncrypterMock, 'encrypt').mockRejectedValueOnce(new Error())
+
+      const promise = service.authLogin(inputData)
+
+      expect(promise).rejects.toThrow(new Error())
     })
   })
 })

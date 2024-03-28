@@ -2,7 +2,7 @@ import { IFindByIdCategoryRepository } from '@/application/protocols/db/categori
 import { FindByIdCategoryService } from '@/application/services/categories'
 
 describe('FindByIdCategoryService', () => {
-  let findByIdCategoryService: FindByIdCategoryService
+  let service: FindByIdCategoryService
   let findByIdCategoryRepositoryMock: IFindByIdCategoryRepository
 
   beforeEach(() => {
@@ -10,16 +10,16 @@ describe('FindByIdCategoryService', () => {
       findById: jest.fn()
     }
 
-    findByIdCategoryService = new FindByIdCategoryService(findByIdCategoryRepositoryMock)
+    service = new FindByIdCategoryService(findByIdCategoryRepositoryMock)
   })
 
   describe('findById', () => {
-    it('should return error message if category is not found', async () => {
-      const categoryId = 123
+    const categoryId = 123
 
+    it('should return error message if category is not found', async () => {
       jest.spyOn(findByIdCategoryRepositoryMock, 'findById').mockResolvedValueOnce(null)
 
-      const result = await findByIdCategoryService.findById(categoryId)
+      const result = await service.findById(categoryId)
 
       expect(result).toEqual({
         type: 'error',
@@ -28,7 +28,6 @@ describe('FindByIdCategoryService', () => {
     })
 
     it('should return category details if category is found', async () => {
-      const categoryId = 123
       const categoryDetails = {
         categoria_id: categoryId,
         nome_categoria: 'Test Category',
@@ -37,13 +36,21 @@ describe('FindByIdCategoryService', () => {
 
       jest.spyOn(findByIdCategoryRepositoryMock, 'findById').mockResolvedValueOnce(categoryDetails)
 
-      const result = await findByIdCategoryService.findById(categoryId)
+      const result = await service.findById(categoryId)
 
       expect(result).toEqual({
         id: categoryId,
         name: 'Test Category',
         description: 'Test Description'
       })
+    })
+
+    it('should throw if FindByIdCategoryRepository.findById throws', async () => {
+      jest.spyOn(findByIdCategoryRepositoryMock, 'findById').mockRejectedValueOnce(new Error())
+
+      const promise = service.findById(categoryId)
+
+      expect(promise).rejects.toThrow(new Error())
     })
   })
 })

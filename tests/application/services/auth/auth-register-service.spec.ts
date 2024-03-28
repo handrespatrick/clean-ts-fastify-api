@@ -3,7 +3,7 @@ import { IAuthRegisterRepository } from '@/application/protocols/db/auth'
 import { AuthRegisterService } from '@/application/services/auth'
 
 describe('AuthRegisterService', () => {
-  let authRegisterService: AuthRegisterService
+  let service: AuthRegisterService
   let authRegisterRepositoryMock: IAuthRegisterRepository
   let bcryptHasherMock: IBcryptHasher
 
@@ -17,10 +17,15 @@ describe('AuthRegisterService', () => {
       hash: jest.fn()
     }
 
-    authRegisterService = new AuthRegisterService(authRegisterRepositoryMock, bcryptHasherMock)
+    service = new AuthRegisterService(authRegisterRepositoryMock, bcryptHasherMock)
   })
 
   describe('authRegister', () => {
+    const inputData = {
+      email: 'new@example.com',
+      password: 'password'
+    }
+
     it('should return "E-mail already in use" if email is already registered', async () => {
       jest.spyOn(authRegisterRepositoryMock, 'findUserByEmail').mockResolvedValueOnce({
         cliente_id: 123,
@@ -33,10 +38,7 @@ describe('AuthRegisterService', () => {
         data_nascimento: null
       })
 
-      const result = await authRegisterService.authRegister({
-        email: 'existing@example.com',
-        password: 'password'
-      })
+      const result = await service.authRegister(inputData)
 
       expect(result).toBe('E-mail already in use')
     })
@@ -55,10 +57,7 @@ describe('AuthRegisterService', () => {
         data_nascimento: null
       })
 
-      const result = await authRegisterService.authRegister({
-        email: 'new@example.com',
-        password: 'password'
-      })
+      const result = await service.authRegister(inputData)
 
       expect(result).toBe('User created successfully')
     })
@@ -68,12 +67,36 @@ describe('AuthRegisterService', () => {
       jest.spyOn(bcryptHasherMock, 'hash').mockResolvedValueOnce('hashedPassword')
       jest.spyOn(authRegisterRepositoryMock, 'addUser').mockResolvedValueOnce(null)
 
-      const result = await authRegisterService.authRegister({
-        email: 'new@example.com',
-        password: 'password'
-      })
+      const result = await service.authRegister(inputData)
 
       expect(result).toBe('User creation failed')
+    })
+
+    it('should throw if AuthRegisterRepository.findUserByEmail throws', async () => {
+      jest.spyOn(authRegisterRepositoryMock, 'findUserByEmail').mockRejectedValueOnce(new Error())
+
+      const promise = service.authRegister(inputData)
+
+      expect(promise).rejects.toThrow(new Error())
+    })
+
+    it('should throw if BcryptHasher.hash throws', async () => {
+      jest.spyOn(authRegisterRepositoryMock, 'findUserByEmail').mockResolvedValueOnce(null)
+      jest.spyOn(bcryptHasherMock, 'hash').mockRejectedValueOnce(new Error())
+
+      const promise = service.authRegister(inputData)
+
+      expect(promise).rejects.toThrow(new Error())
+    })
+
+    it('should throw if AuthRegisterRepository.addUser throws', async () => {
+      jest.spyOn(authRegisterRepositoryMock, 'findUserByEmail').mockResolvedValueOnce(null)
+      jest.spyOn(bcryptHasherMock, 'hash').mockResolvedValueOnce('hashedPassword')
+      jest.spyOn(authRegisterRepositoryMock, 'addUser').mockRejectedValueOnce(new Error())
+
+      const promise = service.authRegister(inputData)
+
+      expect(promise).rejects.toThrow(new Error())
     })
   })
 })

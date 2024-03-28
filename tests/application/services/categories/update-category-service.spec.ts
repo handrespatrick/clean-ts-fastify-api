@@ -2,7 +2,7 @@ import { IUpdateCategoryRepository } from '@/application/protocols/db/categories
 import { UpdateCategoryService } from '@/application/services/categories'
 
 describe('UpdateCategoryService', () => {
-  let updateCategoryService: UpdateCategoryService
+  let service: UpdateCategoryService
   let updateCategoryRepositoryMock: IUpdateCategoryRepository
 
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe('UpdateCategoryService', () => {
       update: jest.fn()
     }
 
-    updateCategoryService = new UpdateCategoryService(updateCategoryRepositoryMock)
+    service = new UpdateCategoryService(updateCategoryRepositoryMock)
   })
 
   describe('update', () => {
@@ -25,7 +25,7 @@ describe('UpdateCategoryService', () => {
 
       jest.spyOn(updateCategoryRepositoryMock, 'findById').mockResolvedValueOnce(null)
 
-      const result = await updateCategoryService.update(categoryData)
+      const result = await service.update(categoryData)
 
       expect(result).toEqual({
         type: 'error',
@@ -54,7 +54,7 @@ describe('UpdateCategoryService', () => {
       })
       jest.spyOn(updateCategoryRepositoryMock, 'update').mockResolvedValueOnce(updatedCategoryDetails)
 
-      const result = await updateCategoryService.update(categoryData)
+      const result = await service.update(categoryData)
 
       expect(result).toEqual({
         id: categoryId,
@@ -62,6 +62,20 @@ describe('UpdateCategoryService', () => {
         description: 'Updated Description',
         updatedAt: expect.any(Date)
       })
+    })
+
+    it('should throw if UpdateCategoryRepository.findById throws', async () => {
+      const categoryData = {
+        id: 123,
+        name: 'Test Category',
+        description: 'Test Description'
+      }
+
+      jest.spyOn(updateCategoryRepositoryMock, 'findById').mockRejectedValueOnce(new Error())
+
+      const promise = service.update(categoryData)
+
+      expect(promise).rejects.toThrow(new Error())
     })
   })
 })

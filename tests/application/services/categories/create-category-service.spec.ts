@@ -2,7 +2,7 @@ import { ICreateCategoryRepository } from '@/application/protocols/db/categories
 import { CreateCategoryService } from '@/application/services/categories'
 
 describe('CreateCategoryService', () => {
-  let createCategoryService: CreateCategoryService
+  let service: CreateCategoryService
   let createCategoryRepositoryMock: ICreateCategoryRepository
 
   beforeEach(() => {
@@ -10,16 +10,16 @@ describe('CreateCategoryService', () => {
       create: jest.fn()
     }
 
-    createCategoryService = new CreateCategoryService(createCategoryRepositoryMock)
+    service = new CreateCategoryService(createCategoryRepositoryMock)
   })
+
+  const categoryData = {
+    name: 'Test Category',
+    description: 'Test Description'
+  }
 
   describe('create', () => {
     it('should create a category and return its details', async () => {
-      const categoryData = {
-        name: 'Test Category',
-        description: 'Test Description'
-      }
-
       const categoryCreated = {
         categoria_id: 123,
         nome_categoria: 'Test Category',
@@ -28,13 +28,21 @@ describe('CreateCategoryService', () => {
 
       jest.spyOn(createCategoryRepositoryMock, 'create').mockResolvedValueOnce(categoryCreated)
 
-      const result = await createCategoryService.create(categoryData)
+      const result = await service.create(categoryData)
 
       expect(result).toEqual({
         id: 123,
         name: 'Test Category',
         description: 'Test Description'
       })
+    })
+
+    it('should throw if CreateCategoryRepository.create throws', async () => {
+      jest.spyOn(createCategoryRepositoryMock, 'create').mockRejectedValueOnce(new Error())
+
+      const promise = service.create(categoryData)
+
+      expect(promise).rejects.toThrow(new Error())
     })
   })
 })
