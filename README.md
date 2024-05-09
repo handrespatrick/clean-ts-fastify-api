@@ -68,8 +68,6 @@ O projeto utiliza diversos padrões de design, incluindo:
 O projeto é documentado usando:
 
 - [Swagger](https://swagger.io/docs/specification/about/)
-- [Docsify](https://docsify.js.org/)
-- [C4 Model](https://c4model.com/)
 
 ### 💡 Princípios
 
