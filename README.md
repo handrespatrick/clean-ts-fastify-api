@@ -4,7 +4,7 @@
 
 ## 📚 Descrição
 
-Aplicação CRUD responsável por gerenciar a autenticação de usuários e o controle de acesso, além de permitir a gestão das tabelas.
+Aplicação CRUD responsável por gerenciar a autenticação de usuários e o controle de acesso.
 
 ## 🎯 Comandos
 
