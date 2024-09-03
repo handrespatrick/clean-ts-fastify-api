@@ -23,7 +23,7 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 - [NodeJS](https://nodejs.org/en)
 - [TypeScript](https://www.typescriptlang.org)
 - [Fastify](https://www.fastify.io)
-- [Prisma](https://www.prisma.io)
+- [Postgres](https://www.postgresql.org)
 - [Jest](https://jestjs.io)
 - [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken)
 - [ESLint](https://eslint.org)
