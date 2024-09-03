@@ -1,26 +1,37 @@
 import { IAuthLoginRepository, IAuthRegisterRepository } from '@/application/protocols/db/auth'
-import { prismaClient } from '@/infra/db/client/prisma-client'
+import { User } from '@/domain/entities'
+import { Pool } from 'pg'
 
 export class AuthRepository implements IAuthLoginRepository, IAuthRegisterRepository {
-  async findUserByEmail(email: string): Promise<IAuthLoginRepository.Result> {
-    return prismaClient.user.findUnique({
-      where: {
-        email
-      }
-    })
+  constructor(private readonly _postgresClient: Pool) {}
+
+  async findUserByEmail(email: string): Promise<IAuthLoginRepository.User | null> {
+    const result = await this._postgresClient.query('SELECT * FROM login WHERE email = $1', [email])
+    if (result.rows.length > 0) {
+      const row = result.rows[0]
+      return new User({
+        id: row.id,
+        name: row.name,
+        email: row.email,
+        password: row.password
+      })
+    }
+    return null
   }
 
-  async addUser(userData: IAuthRegisterRepository.Params): Promise<IAuthRegisterRepository.Result> {
-    return prismaClient.user.create({
-      data: {
-        email: userData.email,
-        username: null,
-        senha: userData.password,
-        nome: null,
-        cpf: '',
-        telefone: null,
-        data_nascimento: null
-      }
-    })
+  async addUser(user: IAuthRegisterRepository.AddUser): Promise<IAuthRegisterRepository.User | null> {
+    const result = await this._postgresClient.query('INSERT INTO login (email, password) VALUES ($1, $2)', [
+      user.email,
+      user.password
+    ])
+    if (result.rows.length > 0) {
+      const row = result.rows[0]
+      return new User({
+        id: row.id,
+        name: row.name,
+        email: row.email,
+        password: row.password
+      })
+    }
   }
 }
