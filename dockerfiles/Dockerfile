@@ -1,34 +1,32 @@
-# build
+# Build
 FROM node:20-alpine AS builder
-
 WORKDIR /app
-
-ENV NODE_ENV=build
 
 COPY . ./
 COPY package*.json ./
 
-RUN npm ci
-RUN npm run build
-RUN rm -f .npmrc
+# Install dependencies and build
+RUN npm ci \
+    && npm run build
 
-# release
+# Release
 FROM node:20-alpine
 
 WORKDIR /app
 
-ENV AWS_NODEJS_CONNECTION_REUSE_ENABLED=1
-ENV NODE_ENV=production
-
-RUN chown node:node ./
-
+# Copy
 COPY --from=builder /app/package.json /app/
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/tsconfig-paths-dist.js /app/tsconfig.json ./
 
-USER node
+# Grant permissions for the appuser
+RUN addgroup -S appuser && adduser -S appuser -G appuser \
+    && chown -R appuser:appuser /app/ \
+    && chmod 756 /app/
 
-EXPOSE 3000
+# Change to non-root privilege
+USER appuser
 
+# Set node as the entrypoint
 ENTRYPOINT ["node", "-r", "./tsconfig-paths-dist.js", "dist/main.js"]
