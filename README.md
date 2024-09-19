@@ -39,7 +39,7 @@ Aplicação CRUD responsável por gerenciar a autenticação de usuários e o co
 
 ### 📁 Estrutura
 
-- [`data`](./src/data) - Orquestra o fluxo de dados entre o domínio e as interfaces, contendo a lógica de aplicação e casos de uso.
+- [`application`](./src/application) - Orquestra o fluxo de dados entre o domínio e as interfaces, contendo a lógica de aplicação e casos de uso.
 - [`domain`](./src/domain) - O núcleo do sistema, com regras e lógicas de negócio, entidades, e interfaces de repositórios.
 - [`infra`](./src/infra) - Implementa detalhes técnicos como bancos de dados e comunicação com serviços externos.
 - [`main`](./src/main) - Ponto de entrada da aplicação, responsável pela inicialização e configuração.
